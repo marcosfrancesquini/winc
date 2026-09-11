@@ -1,0 +1,77 @@
+"use strict";
+
+console.log("----------------example 1--------------------\n\n");
+// The data structure we want to convert to JSON.
+const miyamoto = {
+  first_name: "Shigeru",
+  last_name: "Miyamoto",
+  married: true,
+  number_of_children: 2,
+  bank_account: null,
+};
+
+// Convert a JavaScript data structure to a JSON string.
+const jsonString = JSON.stringify(miyamoto);
+
+// console.log(jsonString);
+// console.log(typeof jsonString); // "string"
+console.log(jsonString);
+console.log(typeof jsonString); // "string"
+
+// Convert the JSON string back to a JavaScript data structure.
+const miyamotoFromJSON = JSON.parse(jsonString);
+// console.log(miyamotoFromJSON['first_name']); // "Shigeru"
+console.log(miyamotoFromJSON['first_name']); // "Shigeru"
+
+console.log(miyamotoFromJSON.first_name);
+
+
+console.log("\n\n----------------example 2--------------------\n\n");
+
+// A more complex example
+
+const sushma = {
+  name: "Sushma",
+  surname: "Niyaas",
+  gender: "female",
+  region: "Nepal",
+  age: 34,
+  title: "mrs",
+  phone: "(540) 813 4205",
+  birthday: { dmy: "18/04/1986", mdy: "04/18/1986", raw: 514220797 },
+  email: "sushma_86@example.com",
+  password: "Niyaas86}=",
+  credit_card: {
+    expiration: "12/28",
+    number: "9845-5127-4306-4871",
+    pin: 7658,
+    security: 506,
+  },
+  photo: "https://uinames.com/api/photos/female/2.jpg",
+};
+
+// Convert a JavaScript data structure to a JSON string.
+const jsonSushma = JSON.stringify(sushma);
+
+//console.log(jsonSushma);
+//console.log(typeof jsonSushma); // "string"
+console.log(jsonSushma);
+console.log(typeof jsonSushma); // "string"
+
+// Convert the JSON string back to a JavaScript data structure.
+const sushmaFromJSON = JSON.parse(jsonSushma);
+// console.log(sushmaFromJSON['credit_card']['number']); // "9845-5127-4306-4871"
+console.log(sushmaFromJSON['credit_card']['number']); // "9845-5127-4306-4871"
+console.log(sushmaFromJSON['credit_card']); 
+
+console.log(sushmaFromJSON.credit_card.number);
+console.log(sushmaFromJSON.credit_card);
+
+
+
+
+
+
+
+
+
