@@ -17,9 +17,17 @@ const showAllAuthors = (cakeRecipes) => {
 };
 
 
+const showRecipeNames = (cakeRecipes) => {
+  if (cakeRecipes.length === 0) {
+    console.log("No recipes found.");
+    return;
+  }
 
-
-
+  cakeRecipes.forEach((cakeRecipe) => {
+    const { Name } = cakeRecipe;
+    console.log(Name);
+  });
+};
 
 
 console.clear();
@@ -50,10 +58,9 @@ do {
   switch (choice) {
     case 1:
       console.log(showAllAuthors(cakeRecipes));
-
       break;
     case 2:
-
+      console.log(showRecipeNames(cakeRecipes));
       break;
     case 3:
 
