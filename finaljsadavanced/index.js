@@ -18,6 +18,7 @@ const showAllAuthors = (cakeRecipes) => {
 
 
 const showRecipeNames = (cakeRecipes) => {
+  const allRecipesNames = [];
   if (cakeRecipes.length === 0) {
     console.log("No recipes found.");
     return;
@@ -25,10 +26,27 @@ const showRecipeNames = (cakeRecipes) => {
 
   cakeRecipes.forEach((cakeRecipe) => {
     const { Name } = cakeRecipe;
-    console.log(Name);
+    allRecipesNames.push(Name);
   });
+  return allRecipesNames;
 };
 
+/*
+const showRecipesByAuthor = (authorName, cakeRecipes) => {
+  return cakeRecipes.filter((cakeRecipe) => {
+    return cakeRecipe.Author === authorName;
+    .map((cakeRecipe) => cakeRecipe.Name);
+  };
+  });
+};*/
+
+const showRecipesByAuthor = (authorName, cakeRecipes) => {
+  return cakeRecipes
+  .filter((cakeRecipe) => {
+    return cakeRecipe.Author === authorName;
+  })
+  .map((cakeRecipe) => cakeRecipe.Name);
+};
 
 console.clear();
 
@@ -60,7 +78,9 @@ do {
       console.log(showAllAuthors(cakeRecipes));
       break;
     case 2:
-      console.log(showRecipeNames(cakeRecipes));
+      const author = prompt("Type the name of the author: ")
+      // showRecipesByAuthor(author, cakeRecipes);
+      console.log(showRecipesByAuthor(author, cakeRecipes));
       break;
     case 3:
 
