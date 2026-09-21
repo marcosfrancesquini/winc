@@ -48,22 +48,34 @@ const showRecipesByAuthor = (authorName, cakeRecipes) => {
   .map((cakeRecipe) => cakeRecipe.Name);
 };
 
-const showRecipesByIngredient = (ingredientName, cakeRecipes) => {
-  return cakeRecipes
-  .filter((cakeRecipe) => {
-    return cakeRecipe.Ingredients.includes(ingredientName);
-  })
-  .map((cakeRecipe) => cakeRecipe.Name);
-};
+// const showRecipesByIngredient = (ingredientName, cakeRecipes) => {
+//   return cakeRecipes
+//   .filter((cakeRecipe) => {
+//     return cakeRecipe.Ingredients.includes(ingredientName);
+//   })
+//   .map((cakeRecipe) => cakeRecipe.Name);
+// };
+
+// const showRecipesByIngredient = (ingredientName, cakeRecipes) => {
+//   return cakeRecipes
+//   .filter((cakeRecipe) => {
+//     return cakeRecipe.Ingredients.some((ingredient) => {
+//       return ingredient === ingredientName;
+//     });
+//   })
+//   .map((cakeRecipe) => cakeRecipe.Name);
+// };
 
 const showAllIngredients = (cakeRecipes) => {
   const allIngredients = [];
   cakeRecipes.forEach((cakeRecipe) => {
-    if (!allIngredients.includes(cakeRecipe.Author)) {
-      allIngredients.push(cakeRecipe.Author);
-    }
+    cakeRecipe.Ingredients.forEach((ingredient) => {
+      if (!allIngredients.includes(ingredient))  {
+        allIngredients.push(ingredient);
+      }
+    });
   });
-  return authorsList.sort();
+  return allIngredients.sort();
 }
 
 console.clear();
@@ -102,7 +114,7 @@ do {
       console.log(showRecipesByAuthor(author, cakeRecipes));
       break;
     case 3:
-      // console.log(showAllIngredients);
+      console.log(showAllIngredients(cakeRecipes));
       const ingredientName = prompt("Type the ingrediente you wish: ");
       console.log(showRecipesByIngredient(ingredientName, cakeRecipes));
       break;
