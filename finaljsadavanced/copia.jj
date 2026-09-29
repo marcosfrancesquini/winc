@@ -60,7 +60,7 @@ const getRecipesByIngredient = (cakeRecipes, ingredientName) => {
 const foundRecipes = getRecipesByIngredient(
 
   cakeRecipes,
- // ingredientName
+  ingredientName
 );
 
 console.log(showRecipeNames(foundRecipes));
@@ -87,18 +87,6 @@ const showAllIngredients = (cakeRecipes) => {
   });
   return allIngredients.sort();
 }
-
-const getRecipeByName = (cakeRecipes, recipeName) => {
-  const recipe = cakeRecipes.find((cakeRecipe) => {
-    return cakeRecipe.Name.includes(recipeName);
-  });
-
-  if (recipe) {
-    return recipe;
-  }
-
-  return "Recipe was not found...";
-};
 
 console.clear();
 
@@ -136,14 +124,13 @@ do {
       console.log(showRecipesByAuthor(author, cakeRecipes));
       break;
     case 3:
-      //console.log(showAllIngredients(cakeRecipes));
+      console.log(showAllIngredients(cakeRecipes));
       const ingredientName = prompt("Type the ingredient you wish: ");
       const foundRecipes = getRecipesByIngredient(cakeRecipes, ingredientName);
       console.log(showRecipeNames(foundRecipes));
       break;
     case 4:
-        const recipeName = prompt("Type the recipe you are looking for: ")
-        console.log(getRecipeByName(cakeRecipes, recipeName));
+
         break;
     case 5:
 
