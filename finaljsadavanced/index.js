@@ -43,15 +43,15 @@ const showRecipesByAuthor = (authorName, cakeRecipes) => {
 const showRecipesByAuthor = (authorName, cakeRecipes) => {
   return cakeRecipes
   .filter((cakeRecipe) => {
-    return cakeRecipe.Author === authorName;
+     cakeRecipe.Author === authorName;
   })
   .map((cakeRecipe) => cakeRecipe.Name);
 };
 
 const getRecipesByIngredient = (cakeRecipes, ingredientName) => {
   return cakeRecipes.filter((cakeRecipe) => {
-    return cakeRecipe.Ingredients.some((ingredient) => {
-      return ingredient === ingredientName;
+     cakeRecipe.Ingredients.some((ingredient) => {
+     ingredient === ingredientName;
     });
   });
 };
@@ -100,6 +100,19 @@ const getRecipeByName = (cakeRecipes, recipeName) => {
   return "Recipe was not found...";
 };
 
+const getAllIngredients = cakeRecipes =>
+cakeRecipes.reduce(
+  (allIngredients, cakeRecipe) =>
+  allIngredients.concat(cakeRecipe.Ingredients),
+  []
+);
+
+const getRecipesByAuthor = (cakeRecipes, authorName) => {
+  return cakeRecipes.filter((cakeRecipe) => {
+     cakeRecipe.Author === authorName;
+  });
+};
+
 console.clear();
 
 // Part 2
@@ -146,7 +159,16 @@ do {
         console.log(getRecipeByName(cakeRecipes, recipeName));
         break;
     case 5:
+      console.log(showAllAuthors(cakeRecipes));
 
+      const authorName = prompt("Type an author: ");
+
+      const recipesByAuthor = getRecipesByAuthor(
+        cakeRecipes,
+        authorName
+      );
+
+      console.log(getAllIngredients(recipesByAuthor));
       break;
     case 0:
       console.log("Exiting...");
