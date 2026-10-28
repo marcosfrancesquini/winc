@@ -1,3 +1,4 @@
+
 'use strict';
 
 const prompt = require('prompt-sync')();
@@ -42,29 +43,25 @@ const showRecipesByAuthor = (authorName, cakeRecipes) => {
 
 const showRecipesByAuthor = (authorName, cakeRecipes) => {
   return cakeRecipes
-  .filter((cakeRecipe) => {
-     cakeRecipe.Author === authorName;
-  })
+  .filter((cakeRecipe) => cakeRecipe.Author === authorName)
   .map((cakeRecipe) => cakeRecipe.Name);
 };
 
 const getRecipesByIngredient = (cakeRecipes, ingredientName) => {
-  return cakeRecipes.filter((cakeRecipe) => {
-     cakeRecipe.Ingredients.some((ingredient) => {
-     ingredient === ingredientName;
-    });
-  });
+  return cakeRecipes.filter((cakeRecipe) =>
+    cakeRecipe.Ingredients.some((ingredient) => ingredient === ingredientName)
+  );
 };
 
 
-const foundRecipes = getRecipesByIngredient(
+// const foundRecipes = getRecipesByIngredient(
 
-  cakeRecipes,
- // ingredientName
-);
+//   cakeRecipes,
+//  // ingredientName
+// );
 
-console.log(showRecipeNames(foundRecipes));
-showRecipeNames(foundRecipes);
+// console.log(showRecipeNames(foundRecipes));
+// showRecipeNames(foundRecipes);
 
 // const showRecipesByIngredient = (ingredientName, cakeRecipes) => {
 //   return cakeRecipes
@@ -89,9 +86,9 @@ const showAllIngredients = (cakeRecipes) => {
 }
 
 const getRecipeByName = (cakeRecipes, recipeName) => {
-  const recipe = cakeRecipes.find((cakeRecipe) => {
-    return cakeRecipe.Name.includes(recipeName);
-  });
+  const recipe = cakeRecipes.find((cakeRecipe) =>
+    cakeRecipe.Name.includes(recipeName)
+  );
 
   if (recipe) {
     return recipe;
@@ -107,11 +104,11 @@ cakeRecipes.reduce(
   []
 );
 
-const getRecipesByAuthor = (cakeRecipes, authorName) => {
-  return cakeRecipes.filter((cakeRecipe) => {
-     cakeRecipe.Author === authorName;
-  });
-};
+const getRecipesByAuthor = (cakeRecipes, authorName) =>
+  cakeRecipes.filter((cakeRecipe) => cakeRecipe.Author === authorName);
+
+// Global variable to save recipes
+const savedRecipes = [];
 
 console.clear();
 
@@ -156,19 +153,23 @@ do {
       break;
     case 4:
         const recipeName = prompt("Type the recipe you are looking for: ")
-        console.log(getRecipeByName(cakeRecipes, recipeName));
+        const recipe = getRecipeByName(cakeRecipes, recipeName);
+        console.log(recipe);
+
+        if (typeof recipe !== "string") {
+          const save = prompt("Save ingredients of this recipe? (y/n): ");
+          if (save.toLowerCase() === "y") {
+            savedRecipes.push(recipe);
+            console.log("Ingredients saved!");
+          }
+        }
         break;
     case 5:
-      console.log(showAllAuthors(cakeRecipes));
-
-      const authorName = prompt("Type an author: ");
-
-      const recipesByAuthor = getRecipesByAuthor(
-        cakeRecipes,
-        authorName
-      );
-
-      console.log(getAllIngredients(recipesByAuthor));
+      if (savedRecipes.length === 0) {
+        console.log("No saved recipes yet.");
+      } else {
+        console.log(getAllIngredients(savedRecipes));
+      }
       break;
     case 0:
       console.log("Exiting...");
